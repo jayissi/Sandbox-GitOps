@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Values.namespace }}
+  namespace: openshift-gitops
+spec:
+  project: {{ .Values.namespace }}
+  destination:
+    name: in-cluster
+    namespace:  {{ .Values.namespace }}
+  source:
+    repoURL: {{ .Values.gitUrl }}
+    path: {{ .Values.gitPath }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

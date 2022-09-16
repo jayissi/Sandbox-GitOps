@@ -1,0 +1,11 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ .Values.namespace }}
+  namespace: openshift-gitops
+spec:
+  destinations:
+    - name: in-cluster
+      namespace: {{ .Values.namespace }}
+  sourceRepos:
+    - {{ .Values.gitUrl }}
