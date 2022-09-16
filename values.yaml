@@ -1,3 +1,7 @@
-namespace: theme-park-api
-gitUrl: https://git.taco.moe/theme-park-api/park.git
-gitPath: '.'
+applications:
+  - namespace: theme-park-api-dev
+    gitUrl: https://git.taco.moe/theme-park-api/park.git
+    gitPath: '.'
+  - namespace: theme-park-api-test
+    gitUrl: https://git.taco.moe/theme-park-api/park.git
+    gitPath: '.'
