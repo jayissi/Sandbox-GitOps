@@ -1,7 +1,7 @@
 applications:
   - namespace: theme-park-api-dev
-    gitUrl: https://git.taco.moe/theme-park-api/park.git
+    gitUrl: https://github.com/RyanMillerC/openshift-path-based-routing.git
     gitPath: '.'
   - namespace: theme-park-api-test
-    gitUrl: https://git.taco.moe/theme-park-api/park.git
+    gitUrl: https://github.com/RyanMillerC/openshift-path-based-routing.git
     gitPath: '.'
