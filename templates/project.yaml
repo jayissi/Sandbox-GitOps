@@ -32,7 +32,7 @@ spec:
   project: {{ $appProject.name }}
   destination:
     name: in-cluster
-    namespace:  {{ $appProject.name }}
+    namespace: {{ $appProject.name }}
   source:
     helm:
       valueFiles:
