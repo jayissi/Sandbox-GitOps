@@ -34,14 +34,19 @@ spec:
     name: in-cluster
     namespace: {{ $appProject.name }}
   source:
+    directory:
+      recurse: false
     helm:
       valueFiles:
         - {{ $application.valuesFile | default "values.yaml" }}
     path: {{ $application.gitPath }}
     repoURL: {{ $appProject.gitUrl }}
+    targetRevision: {{ $application.gitBranch | default "main" }}
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - PruneLast=true
 {{ end }}
 {{ end }}
