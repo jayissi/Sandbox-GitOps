@@ -2,9 +2,19 @@ appProjects:
   - name: theme-park-api-dev
     gitUrl: 'https://github.com/RyanMillerC/openshift-path-based-routing.git'
     applications:
-      - name: hershey-park
+      - name: hershey-park-dev
         gitPath: '.'
-      - name: kings-dominion
+      - name: kings-dominion-dev
         gitPath: '.'
-      - name: six-flags
+      - name: six-flags-dev
+        gitPath: '.'
+
+  - name: theme-park-api-test
+    gitUrl: 'https://github.com/RyanMillerC/openshift-path-based-routing.git'
+    applications:
+      - name: hershey-park-test
+        gitPath: '.'
+      - name: kings-dominion-test
+        gitPath: '.'
+      - name: six-flags-test
         gitPath: '.'
