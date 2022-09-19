@@ -1,7 +1,37 @@
-applications:
-  - namespace: theme-park-api-dev
-    gitUrl: https://github.com/RyanMillerC/openshift-path-based-routing.git
-    gitPath: '.'
-  - namespace: theme-park-api-test
-    gitUrl: https://github.com/RyanMillerC/openshift-path-based-routing.git
-    gitPath: '.'
+appProjects:
+  - name: acm-policy
+    gitUrl: 'https://gitlab.com/acm-policies.git'
+    applications:
+      - name: etcd-encryption
+        gitPath: 'non-cluster-specific-acm-policies/etcd-encryption'
+      - name: fips-check
+        gitPath: 'non-cluster-specific-acm-policies/fips-check'
+        valuesFile: 'dev.values.yaml'
+
+  - name: dev-acm-policy
+    gitUrl: 'https://gitlab.com/acm-policies.git'
+    applications:
+      - name: gp3-storage
+        gitPath: 'cluster-specific/acm-policies/gp3-storage'
+        valuesFile: 'dev.values.yaml'
+
+  - name: acm-policy-test
+    gitUrl: 'https://gitlab.com/acm-policies.git'
+    applications:
+      - name: gp3-storage
+        gitPath: 'cluster-specific/acm-policies/gp3-storage'
+        valuesFile: 'test.values.yaml'
+
+  - name: acm-policy-stage
+    gitUrl: 'https://gitlab.com/acm-policies.git'
+    applications:
+      - name: gp3-storage
+        gitPath: 'cluster-specific/acm-policies/gp3-storage'
+        valuesFile: 'stage.values.yaml'
+
+  - name: acm-policy-prod
+    gitUrl: 'https://gitlab.com/acm-policies.git'
+    applications:
+      - name: gp3-storage
+        gitPath: 'cluster-specific/acm-policies/gp3-storage'
+        valuesFile: 'prod.values.yaml'

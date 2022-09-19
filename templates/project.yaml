@@ -1,0 +1,47 @@
+{{ range $appProject := .Values.appProjects }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  #annotations:
+  #  openshift.io/description: ""
+  #  openshift.io/display-name: ""
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops
+  name: {{ $appProject.name }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ $appProject.name }}
+  namespace: openshift-gitops
+spec:
+  destinations:
+    - name: in-cluster
+      namespace: {{ $appProject.name }}
+  sourceRepos:
+    - {{ $appProject.gitUrl }}
+{{ range $application := $appProject.applications }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $application.name }}
+  namespace: openshift-gitops
+spec:
+  project: {{ $appProject.name }}
+  destination:
+    name: in-cluster
+    namespace:  {{ $appProject.name }}
+  source:
+    helm:
+      valueFiles:
+        - {{ $application.valuesFile | default "values.yaml" }}
+    path: {{ $application.gitPath }}
+    repoURL: {{ $appProject.gitUrl }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+{{ end }}
+{{ end }}
