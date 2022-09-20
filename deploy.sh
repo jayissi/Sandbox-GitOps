@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# This is a shell script so ACM doesn't pick up the YAML and try to deploy
+# objects that already exist.
+#
 
 set -e
 
