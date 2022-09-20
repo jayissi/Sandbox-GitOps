@@ -43,6 +43,14 @@ spec:
     placementRef:
       kind: PlacementRule
       name: theme-park-api
+  # If you don't have this packageOverrides section, the HelmRelease that is
+  # created will error because the chartPath is set to `/tmp/<namespace>/<channel>-local`.
+  # Not sure if it's a bug or expected.
+  packageOverrides:
+    - packageName: gitops-dev
+      packageOverrides:
+        - path: repo.source.git.chartPath
+          value: '.'
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
