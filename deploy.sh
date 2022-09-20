@@ -6,11 +6,17 @@
 
 set -e
 
+# Name of this GitOps Helm chart. Recommended: "gitops-<clustername>"
+CHART_NAME="gitops-dev"
+
+# URL to this repo. Should end in ".git"
+REPO_URL="https://github.com/hello-world-gitops/gitops-dev.git"
+
 oc create -f - << EOF
 apiVersion: app.k8s.io/v1beta1
 kind: Application
 metadata:
-  name: theme-park-api
+  name: $CHART_NAME
   namespace: openshift-gitops
 spec:
   componentKinds:
@@ -22,18 +28,18 @@ spec:
       - key: app
         operator: In
         values:
-          - theme-park-api
+          - $CHART_NAME
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: Channel
 metadata:
   annotations:
     apps.open-cluster-management.io/reconcile-rate: medium
-  name: gitops-dev
+  name: $CHART_NAME
   namespace: openshift-gitops
 spec:
   type: Git
-  pathname: 'https://github.com/hello-world-gitops/gitops-dev.git'
+  pathname: "$REPO_URL"
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: Subscription
@@ -43,20 +49,20 @@ metadata:
     apps.open-cluster-management.io/git-path: '.'
     apps.open-cluster-management.io/reconcile-option: merge
   labels:
-    app: theme-park-api
-  name: theme-park-api
+    app: $CHART_NAME
+  name: $CHART_NAME
   namespace: openshift-gitops
 spec:
-  channel: openshift-gitops/gitops-dev
+  channel: openshift-gitops/$CHART_NAME
   placement:
     placementRef:
       kind: PlacementRule
-      name: theme-park-api
+      name: $CHART_NAME
   # If you don't have this packageOverrides section, the HelmRelease that is
   # created will error because the chartPath is set to "/tmp/<namespace>/<channel>-local".
   # Not sure if it's a bug or expected.
   packageOverrides:
-    - packageName: gitops-dev
+    - packageName: $CHART_NAME
       packageOverrides:
         - path: repo.source.git.chartPath
           value: '.'
@@ -65,8 +71,8 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   labels:
-    app: theme-park-api
-  name: theme-park-api
+    app: $CHART_NAME
+  name: $CHART_NAME
   namespace: openshift-gitops
 spec:
   clusterSelector:
