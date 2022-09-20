@@ -1,3 +1,8 @@
+#!/bin/bash
+
+set -e
+
+oc create -f - << EOF
 apiVersion: app.k8s.io/v1beta1
 kind: Application
 metadata:
@@ -44,7 +49,7 @@ spec:
       kind: PlacementRule
       name: theme-park-api
   # If you don't have this packageOverrides section, the HelmRelease that is
-  # created will error because the chartPath is set to `/tmp/<namespace>/<channel>-local`.
+  # created will error because the chartPath is set to "/tmp/<namespace>/<channel>-local".
   # Not sure if it's a bug or expected.
   packageOverrides:
     - packageName: gitops-dev
@@ -63,3 +68,4 @@ spec:
   clusterSelector:
     matchLabels:
       'local-cluster': 'true'
+EOF
