@@ -1,8 +1,17 @@
 appProjects:
+    # Name will be used for the Argo CD AppProject and the Namespace the
+    # applications will be deployed into
   - name: theme-park-api-dev
+    # URL to a Git repo with application Helm charts for this project. This URL
+    # should end in ".git".
     gitUrl: 'https://github.com/RyanMillerC/openshift-path-based-routing.git'
+    # List of applications to deploy into the project.
     applications:
+        # Name of the application. THIS MUST BE UNIQUE! Even if deployed into a
+        # different project, Argo CD Application names must be unique.
       - name: hershey-park-dev
+        # Path inside the project gitUrl to the Helm chart. Use "." if the
+        # chart is in the root of the repo. Use a relative path otherwise.
         gitPath: '.'
       - name: kings-dominion-dev
         gitPath: '.'
