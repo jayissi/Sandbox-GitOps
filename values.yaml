@@ -11,10 +11,10 @@ appProjects:
 
     # URL to a Git repo with application Helm charts for this project. This URL
     # should end in ".git"
-    gitUrl: 'https://github.com/RyanMillerC/openshift-path-based-routing.git'
+    gitUrl: "https://github.com/RyanMillerC/theme-park-api-chart.git"
 
     # Git branch to pull charts from. Default: "main"
-    gitBranch: dev
+    gitBranch: main
 
     # Helm values file to use relative to each helm chart. Default: "values.yaml"
     valuesFile: dev.values.yaml
@@ -27,20 +27,23 @@ appProjects:
 
         # Path inside the project gitUrl to the Helm chart. Use "." if the
         # chart is in the root of the repo. Use a relative path otherwise
-        gitPath: '.'
+        gitPath: './hershey-park'
 
       - name: kings-dominion-dev
-        gitPath: '.'
+        gitPath: './kings-dominion'
       - name: six-flags-dev
-        gitPath: '.'
+        gitPath: './six-flags'
 
   # Only required options are provided in this block
   - name: theme-park-api-test
-    gitUrl: 'https://github.com/RyanMillerC/openshift-path-based-routing.git'
+    description: "Test deployment of Theme Park API"
+    displayName: "Theme Park API - Test"
+    gitUrl: "https://github.com/RyanMillerC/theme-park-api-chart.git"
+    valuesFile: test.values.yaml
     applications:
       - name: hershey-park-test
-        gitPath: '.'
+        gitPath: './hershey-park'
       - name: kings-dominion-test
-        gitPath: '.'
+        gitPath: './kings-dominion'
       - name: six-flags-test
-        gitPath: '.'
+        gitPath: './six-flags'
