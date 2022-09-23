@@ -35,15 +35,15 @@ appProjects:
         gitPath: './six-flags'
 
   # Only required options are provided in this block
-  - name: theme-park-api-test
-    description: "Test deployment of Theme Park API"
-    displayName: "Theme Park API - Test"
-    gitUrl: "https://github.com/RyanMillerC/theme-park-api-chart.git"
-    valuesFile: test.values.yaml
-    applications:
-      - name: hershey-park-test
-        gitPath: './hershey-park'
-      - name: kings-dominion-test
-        gitPath: './kings-dominion'
-      - name: six-flags-test
-        gitPath: './six-flags'
+  # - name: theme-park-api-test
+  #   description: "Test deployment of Theme Park API"
+  #   displayName: "Theme Park API - Test"
+  #   gitUrl: "https://github.com/RyanMillerC/theme-park-api-chart.git"
+  #   valuesFile: test.values.yaml
+  #   applications:
+  #     - name: hershey-park-test
+  #       gitPath: './hershey-park'
+  #     - name: kings-dominion-test
+  #       gitPath: './kings-dominion'
+  #     - name: six-flags-test
+  #       gitPath: './six-flags'
