@@ -1,3 +1,8 @@
+**NOTE: This repo is part of [Hello OpenShift: Multi-Cluster GitOps].** It's
+not intended to be referenced directly. Instead, check out the organization's
+page for how this repository fits into the greater multi-cluster GitOps
+architecture.
+
 # GitOps Configurations for Dev Cluster
 
 This repo contains Argo CD configurations for all applications on the dev
@@ -30,3 +35,5 @@ cluster:
 | .Values.appProjects[].applications           | Yes       | List of applications to deploy in the project |
 | .Values.appProjects[].applications[].name    | Yes       | Name of the application being deployed. NOTE: THIS MUST BE UNIQUE! Even if deployed into a different project, Argo CD Application names must be unique. |
 | .Values.appProjects[].applications[].gitPath | Yes       | Path inside the project gitUrl to the Helm chart. Use "." if the chart is in the root of the repo. Use a relative path otherwise. |
+
+[Hello OpenShift: Multi-Cluster Management]: https://github.com/hello-openshift-multicluster-gitops
