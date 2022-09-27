@@ -47,5 +47,5 @@ Applications that this chart will deploy are configured in
 | .Values.appProjects[].applications[].name    | Yes       | Name of the application being deployed. NOTE: THIS MUST BE UNIQUE! Even if deployed into a different project, Argo CD Application names must be unique. |
 | .Values.appProjects[].applications[].gitPath | Yes       | Path inside the project gitUrl to the Helm chart. Use "." if the chart is in the root of the repo. Use a relative path otherwise. |
 
-[Hello OpenShift: Multi-Cluster Management]: https://github.com/hello-openshift-multicluster-gitops
+[Hello OpenShift: Multi-Cluster GitOps]: https://github.com/hello-openshift-multicluster-gitops
 [bootstrap]: https://github.com/hello-openshift-multicluster-gitops/bootstrap
