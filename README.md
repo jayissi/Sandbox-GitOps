@@ -6,22 +6,33 @@ architecture.
 # GitOps Configurations for Dev Cluster
 
 This repo contains Argo CD configurations for all applications on the dev
-cluster. It is a Helm chart which deploys Namespaces, AppProjects, and
+cluster. It contains a Helm chart which deploys Namespaces, AppProjects, and
 Applications, based on configurations in values.yaml.
 
-This repo is continuously pushed by ACM to the dev cluster.
+This repo is continuously deployed by ACM to the Dev cluster. The ACM
+subscription that deploys this repo is set up in [bootstrap].
 
-## Deploying
+```mermaid
+graph TD
+        ACM["Red Hat Advanced Cluster<br />Mangement (ACM) for Kubernetes"]
 
-This will deploy an ACM Application (Subscription and other required objects)
-on the hub cluster, which will continuously deploy this repo to the dev
-cluster:
+        subgraph hub [Hub Openshift Cluster]
+        ACM
+        end
 
-```bash
-./deploy.sh
+        subgraph dev [Dev OpenShift Cluster]
+        GitOpsDev["OpenShift GitOps<br />(Argo CD)"]
+        DevApplications["Development Applications"]
+        end
+
+        ACM -- "Continously deploys<br />'gitops-dev' repo" --> GitOpsDev
+        GitOpsDev -- "Continously deploys<br />application repos" --> DevApplications
 ```
 
 ## Values
+
+Applications that this chart will deploy are configured in
+[values.yaml](values.yaml).
 
 | Value                                        | Required? | Description |
 | -------------------------------------------- | --------- | ----------- |
@@ -37,3 +48,4 @@ cluster:
 | .Values.appProjects[].applications[].gitPath | Yes       | Path inside the project gitUrl to the Helm chart. Use "." if the chart is in the root of the repo. Use a relative path otherwise. |
 
 [Hello OpenShift: Multi-Cluster Management]: https://github.com/hello-openshift-multicluster-gitops
+[bootstrap]: https://github.com/hello-openshift-multicluster-gitops/bootstrap
