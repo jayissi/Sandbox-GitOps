@@ -33,6 +33,8 @@ appProjects:
         gitPath: 'non-cluster-specific-acm-policies/machineconfigpool'
       - name: tls-v1.2-security-profile
         gitPath: 'non-cluster-specific-acm-policies/tls-v1.2-security-profile'
+      - name: web-terminal
+        gitPath: 'non-cluster-specific-acm-policies/web-terminal'
       - name: fips-check
         gitPath: 'non-cluster-specific-acm-policies/fips-check'
       - name: compliance-operator
@@ -58,8 +60,8 @@ appProjects:
     gitBranch: main
     valuesFile: values.yaml
     applications:
-      - name: shared-secrets
-        gitPath: 'managed-clusters/shared-secrets'
+      - name: shared-secure-cluster-secrets
+        gitPath: 'managed-clusters/shared-secure-cluster-secrets'
 
   # local-cluster configuration
   - name: local-cluster-acm-policy
