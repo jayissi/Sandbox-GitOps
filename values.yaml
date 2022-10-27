@@ -77,6 +77,8 @@ appProjects:
         gitPath: 'cluster-specific-acm-policies/odf-deployment'
       - name: rhacs-central
         gitPath: 'cluster-specific-acm-policies/rhacs-central'
+      - name: secret-store
+        gitPath: 'cluster-specific-acm-policies/secret-store'
       - name: external-secrets
         gitPath: 'cluster-specific-acm-policies/external-secrets'
       - name: cluster-specific-policy-set
