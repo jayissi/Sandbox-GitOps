@@ -1,49 +1,96 @@
 appProjects:
     # Name will be used for the Argo CD AppProject and the Namespace the
     # applications will be deployed into
-  - name: theme-park-api-dev
+  - name: acm-policy
 
     # Description for the project
-    description: "Development deployment of Theme Park API"
+    description: "ACM policies for each OpenShift cluster"
 
     # Display name for the project
-    displayName: "Theme Park API - Dev"
+    displayName: "Baseline ACM Policies"
 
     # URL to a Git repo with application Helm charts for this project. This URL
     # should end in ".git"
-    gitUrl: "https://github.com/RyanMillerC/theme-park-api-chart.git"
+    gitUrl: 'https://github.com/jayissi/Sandbox-ACM-Policy.git'
 
     # Git branch to pull charts from. Default: "main"
     gitBranch: main
 
     # Helm values file to use relative to each helm chart. Default: "values.yaml"
-    valuesFile: dev.values.yaml
+    valuesFile: values.yaml
 
     # List of applications to deploy into the project
     applications:
         # Name of the application. THIS MUST BE UNIQUE! Even if deployed into a
         # different project, Argo CD Application names must be unique
-      - name: hershey-park-dev
+      - name: etcd-encryption
 
         # Path inside the project gitUrl to the Helm chart. Use "." if the
         # chart is in the root of the repo. Use a relative path otherwise
-        gitPath: './hershey-park'
+        gitPath: 'non-cluster-specific-acm-policies/etcd-encryption'
 
-      - name: kings-dominion-dev
-        gitPath: './kings-dominion'
-      - name: six-flags-dev
-        gitPath: './six-flags'
+      - name: machineconfigpool
+        gitPath: 'non-cluster-specific-acm-policies/machineconfigpool'
+      - name: tls-v1.2-security-profile
+        gitPath: 'non-cluster-specific-acm-policies/tls-v1.2-security-profile'
+      - name: fips-check
+        gitPath: 'non-cluster-specific-acm-policies/fips-check'
+      - name: compliance-operator
+        gitPath: 'non-cluster-specific-acm-policies/compliance-operator'
+      - name: compliance-scan
+        gitPath: 'non-cluster-specific-acm-policies/compliance-scan'
+      - name: rhacs-operator
+        gitPath: 'non-cluster-specific-acm-policies/rhacs-operator'
+      - name: rhacs-secure-cluster
+        gitPath: 'non-cluster-specific-acm-policies/rhacs-secure-cluster'
+      - name: rook-ceph-operator-tolerations
+        gitPath: 'non-cluster-specific-acm-policies/rook-ceph-operator-tolerations'
+      - name: migrate-cluster-resources-to-infra-nodes
+        gitPath: 'non-cluster-specific-acm-policies/migrate-cluster-resources-to-infra-nodes'
+      - name: baseline-policy-set
+        gitPath: 'non-cluster-specific-acm-policies/baseline-policy-set'
 
-  # Only required options are provided in this block
-  # - name: theme-park-api-test
-  #   description: "Test deployment of Theme Park API"
-  #   displayName: "Theme Park API - Test"
-  #   gitUrl: "https://github.com/RyanMillerC/theme-park-api-chart.git"
-  #   valuesFile: test.values.yaml
-  #   applications:
-  #     - name: hershey-park-test
-  #       gitPath: './hershey-park'
-  #     - name: kings-dominion-test
-  #       gitPath: './kings-dominion'
-  #     - name: six-flags-test
-  #       gitPath: './six-flags'
+  # stackrox shared secrets
+  - name: stackrox
+    description: "Manage ACM Cluster share stackrox secure cluster secrets (e.g. $central_hostname, $central_port, sensor-tls, etc)"
+    displayName: "Stackrox Shared Secrets"
+    gitUrl: 'https://github.com/jayissi/Sandbox-ACM-Policy.git'
+    gitBranch: main
+    valuesFile: values.yaml
+    applications:
+      - name: shared-secrets
+        gitPath: 'managed-clusters/shared-secrets'
+
+  # local-cluster configuration
+  - name: local-cluster-acm-policy
+    description: "ACM policy configuration namespace specified for cluster 'local-cluster'"
+    displayName: "local-cluster ACM Policies"
+    gitUrl: 'https://github.com/jayissi/Sandbox-ACM-Policy.git'
+    gitBranch: main
+    valuesFile: local-cluster.values.yaml
+    applications:
+      - name: gp3-storageclass
+        gitPath: 'cluster-specific-acm-policies/gp3-storageclass'
+      - name: machine-sets
+        gitPath: 'cluster-specific-acm-policies/machine-sets'
+      - name: odf-deployment
+        gitPath: 'cluster-specific-acm-policies/odf-deployment'
+      - name: rhacs-central
+        gitPath: 'cluster-specific-acm-policies/rhacs-central'
+      - name: external-secrets
+        gitPath: 'cluster-specific-acm-policies/external-secrets'
+      - name: cluster-specific-policy-set
+        gitPath: 'cluster-specific-acm-policies/cluster-specific-policy-set'
+
+  # managed-clusters configuration
+  - name: managed-clusters-acm-policy
+    description: "ACM policy configuration namespace specified for cluster(s) managed by RHACM"
+    displayName: "managed-clusters ACM Policies"
+    gitUrl: 'https://github.com/jayissi/Sandbox-ACM-Policy.git'
+    gitBranch: main
+    valuesFile: values.yaml
+    applications:
+      - name: ingresscontroller-hostname-share
+        gitPath: 'managed-clusters/ingresscontroller-hostname-share'
+      - name: managed-clusters-policy-set
+        gitPath: 'managed-clusters/managed-clusters-policy-set'

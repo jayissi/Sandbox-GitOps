@@ -20,7 +20,7 @@ spec:
     - name: in-cluster
       namespace: {{ $appProject.name }}
   sourceRepos:
-    - {{ $appProject.gitUrl }}
+    - {{ squote $appProject.gitUrl }}
 {{ range $application := $appProject.applications }}
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -38,9 +38,9 @@ spec:
       recurse: false
     helm:
       valueFiles:
-        - {{ $appProject.valuesFile | default "values.yaml" }}
-    path: {{ $application.gitPath }}
-    repoURL: {{ $appProject.gitUrl }}
+        - {{ $appProject.valuesFile | default "values.yaml" | squote }}
+    repoURL: {{ squote $appProject.gitUrl }}
+    path: {{ squote $application.gitPath }}
     targetRevision: {{ $appProject.gitBranch | default "main" }}
   syncPolicy:
     automated:
