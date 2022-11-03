@@ -63,6 +63,19 @@ appProjects:
       - name: shared-secure-cluster-secrets
         gitPath: 'managed-clusters/shared-secure-cluster-secrets'
 
+  # hub-clusters configuration
+  - name: hub-cluster-acm-policy
+    description: "ACM policy configuration namespace solely for hub cluster"
+    displayName: "hub-cluster ACM Policies"
+    gitUrl: 'https://github.com/jayissi/Sandbox-ACM-Policy.git'
+    gitBranch: main
+    valuesFile: values.yaml
+    applications:
+      - name: rhacs-central
+        gitPath: 'hub-cluster/rhacs-central'
+      - name: hub-cluster-policy-set
+        gitPath: 'hub-cluster/hub-cluster-policy-set'
+
   # local-cluster configuration
   - name: local-cluster-acm-policy
     description: "ACM policy configuration namespace specified for cluster 'local-cluster'"
@@ -77,8 +90,6 @@ appProjects:
         gitPath: 'cluster-specific-acm-policies/machine-sets'
       - name: odf-deployment
         gitPath: 'cluster-specific-acm-policies/odf-deployment'
-      - name: rhacs-central
-        gitPath: 'cluster-specific-acm-policies/rhacs-central'
       - name: secret-store
         gitPath: 'cluster-specific-acm-policies/secret-store'
       - name: external-secrets
