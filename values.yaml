@@ -73,6 +73,8 @@ appProjects:
     applications:
       - name: rhacs-central
         gitPath: 'hub-cluster/rhacs-central'
+      - name: rhacs-init-bundle
+        gitPath: 'hub-cluster/rhacs-init-bundle'
       - name: hub-cluster-policy-set
         gitPath: 'hub-cluster/hub-cluster-policy-set'
 
