@@ -86,17 +86,23 @@ appProjects:
     gitBranch: main
     valuesFile: local-cluster.values.yaml
     applications:
-      - name: gp3-storageclass
+      - name: local-cluster-gp3-storageclass
         gitPath: 'cluster-specific-acm-policies/gp3-storageclass'
-      - name: machine-sets
+      - name: local-cluster-machine-sets
         gitPath: 'cluster-specific-acm-policies/machine-sets'
-      - name: odf-deployment
+      - name: local-cluster-odf-deployment
         gitPath: 'cluster-specific-acm-policies/odf-deployment'
-      - name: secret-store
+      - name: local-cluster-secret-store
         gitPath: 'cluster-specific-acm-policies/secret-store'
-      - name: external-secrets
+      - name: local-cluster-external-secrets
         gitPath: 'cluster-specific-acm-policies/external-secrets'
-      - name: cluster-specific-policy-set
+  #    - name: local-cluster-openshift-api-certificate
+  #      gitPath: 'cluster-specific-acm-policies/certs/openshift-api-certificate'
+  #    - name: local-cluster-openshift-ingress-certificate
+  #      gitPath: 'cluster-specific-acm-policies/certs/openshift-ingress-certificate'
+  #    - name: local-cluster-openshift-proxy-certificate
+  #      gitPath: 'cluster-specific-acm-policies/certs/openshift-proxy-certificate'
+      - name: local-cluster-acm-policy-set
         gitPath: 'cluster-specific-acm-policies/cluster-specific-policy-set'
 
   # managed-clusters configuration
