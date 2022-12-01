@@ -1,34 +1,27 @@
+---
+#Refrences
+#
+#appProject.name := Name of Argo APP project, namespace
+#appProject.description := Namespace description
+#appProject.DisplayName := Namespace DisplayName
+#appProject.gitUrl := Git URL for application helm charts (should end in ".git")
+#appProject.gitBranch := Git Branch for respective application group (Defaults to "main")
+#appProject.valuesFile := Values file for helm charts (Defaults to values.yaml)
+#appProject.applications := List of applications to deploy into the project
+#appProject.applications.name := UNIQUE Name for argo application
+#appProject.applications.gitPath := Path inside the project gitUrl to the Helm chart
+
+
 appProjects:
-    # Name will be used for the Argo CD AppProject and the Namespace the
-    # applications will be deployed into
   - name: acm-policy
-
-    # Description for the project
     description: "ACM policies for each OpenShift cluster"
-
-    # Display name for the project
     displayName: "Baseline ACM Policies"
-
-    # URL to a Git repo with application Helm charts for this project. This URL
-    # should end in ".git"
     gitUrl: 'https://github.com/jayissi/Sandbox-ACM-Policy.git'
-
-    # Git branch to pull charts from. Default: "main"
     gitBranch: main
-
-    # Helm values file to use relative to each helm chart. Default: "values.yaml"
     valuesFile: values.yaml
-
-    # List of applications to deploy into the project
     applications:
-        # Name of the application. THIS MUST BE UNIQUE! Even if deployed into a
-        # different project, Argo CD Application names must be unique
       - name: etcd-encryption
-
-        # Path inside the project gitUrl to the Helm chart. Use "." if the
-        # chart is in the root of the repo. Use a relative path otherwise
         gitPath: 'non-cluster-specific-acm-policies/etcd-encryption'
-
       - name: machineconfigpool
         gitPath: 'non-cluster-specific-acm-policies/machineconfigpool'
       - name: tls-v1.2-security-profile
@@ -77,6 +70,8 @@ appProjects:
         gitPath: 'hub-cluster/rhacs-init-bundle'
       - name: hub-cluster-policy-set
         gitPath: 'hub-cluster/hub-cluster-policy-set'
+      - name: disable-self-provisioners-crb
+        gitPath: 'hub-cluster/disable-self-provisioners-crb'
 
   # local-cluster configuration
   - name: local-cluster-acm-policy
