@@ -64,6 +64,12 @@ appProjects:
     gitBranch: main
     valuesFile: values.yaml
     applications:
+      - name: aap-hub
+        gitPath: 'hub-cluster/aap-hub'
+      - name: aap-operator
+        gitPath: 'hub-cluster/aap-operator'
+      - name: aap-controller
+        gitPath: 'hub-cluster/aap-controller'
       - name: rhacs-central
         gitPath: 'hub-cluster/rhacs-central'
       - name: rhacs-init-bundle
