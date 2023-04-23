@@ -40,8 +40,6 @@ appProjects:
         gitPath: 'non-cluster-specific-acm-policies/rhacs-secure-cluster'
       - name: rook-ceph-operator-tolerations
         gitPath: 'non-cluster-specific-acm-policies/rook-ceph-operator-tolerations'
-      - name: migrate-cluster-resources-to-infra-nodes
-        gitPath: 'non-cluster-specific-acm-policies/migrate-cluster-resources-to-infra-nodes'
       - name: baseline-policy-set
         gitPath: 'non-cluster-specific-acm-policies/baseline-policy-set'
 
@@ -103,6 +101,8 @@ appProjects:
   #      gitPath: 'cluster-specific-acm-policies/certs/openshift-ingress-certificate'
   #    - name: local-cluster-openshift-proxy-certificate
   #      gitPath: 'cluster-specific-acm-policies/certs/openshift-proxy-certificate'
+      - name: local-cluster-migrate-cluster-resources-to-infra-nodes
+        gitPath: 'cluster-specific-acm-policies/migrate-cluster-resources-to-infra-nodes'
       - name: local-cluster-acm-policy-set
         gitPath: 'cluster-specific-acm-policies/cluster-specific-policy-set'
 
@@ -130,6 +130,8 @@ appProjects:
   #      gitPath: 'cluster-specific-acm-policies/certs/openshift-ingress-certificate'
   #    - name: dev-openshift-proxy-certificate
   #      gitPath: 'cluster-specific-acm-policies/certs/openshift-proxy-certificate'
+      - name: dev-migrate-cluster-resources-to-infra-nodes
+        gitPath: 'cluster-specific-acm-policies/migrate-cluster-resources-to-infra-nodes'
       - name: dev-acm-policy-set
         gitPath: 'cluster-specific-acm-policies/cluster-specific-policy-set'
 
