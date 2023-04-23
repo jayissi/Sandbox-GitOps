@@ -106,6 +106,33 @@ appProjects:
       - name: local-cluster-acm-policy-set
         gitPath: 'cluster-specific-acm-policies/cluster-specific-policy-set'
 
+  # dev configuration
+  - name: dev-acm-policy
+    description: "ACM policy configuration namespace specified for cluster 'dev'"
+    displayName: "dev ACM Policies"
+    gitUrl: 'https://github.com/jayissi/Sandbox-ACM-Policy.git'
+    gitBranch: main
+    valuesFile: dev.values.yaml
+    applications:
+      - name: dev-gp3-storageclass
+        gitPath: 'cluster-specific-acm-policies/gp3-storageclass'
+      - name: dev-machine-sets
+        gitPath: 'cluster-specific-acm-policies/machine-sets'
+      - name: dev-odf-deployment
+        gitPath: 'cluster-specific-acm-policies/odf-deployment'
+      - name: dev-secret-store
+        gitPath: 'cluster-specific-acm-policies/secret-store'
+      - name: dev-external-secrets
+        gitPath: 'cluster-specific-acm-policies/external-secrets'
+  #    - name: dev-openshift-api-certificate
+  #      gitPath: 'cluster-specific-acm-policies/certs/openshift-api-certificate'
+  #    - name: dev-openshift-ingress-certificate
+  #      gitPath: 'cluster-specific-acm-policies/certs/openshift-ingress-certificate'
+  #    - name: dev-openshift-proxy-certificate
+  #      gitPath: 'cluster-specific-acm-policies/certs/openshift-proxy-certificate'
+      - name: dev-acm-policy-set
+        gitPath: 'cluster-specific-acm-policies/cluster-specific-policy-set'
+
   # managed-clusters configuration
   - name: managed-clusters-acm-policy
     description: "ACM policy configuration namespace specified for cluster(s) managed by RHACM"
