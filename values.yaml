@@ -101,8 +101,8 @@ appProjects:
   #      gitPath: 'cluster-specific-acm-policies/certs/openshift-ingress-certificate'
   #    - name: local-cluster-openshift-proxy-certificate
   #      gitPath: 'cluster-specific-acm-policies/certs/openshift-proxy-certificate'
-      - name: local-cluster-migrate-cluster-resources
-        gitPath: 'cluster-specific-acm-policies/migrate-cluster-resources'
+      - name: local-cluster-migrate-cluster-resource
+        gitPath: 'cluster-specific-acm-policies/migrate-cluster-resource'
       - name: local-cluster-acm-policy-set
         gitPath: 'cluster-specific-acm-policies/cluster-specific-policy-set'
 
@@ -130,8 +130,8 @@ appProjects:
   #      gitPath: 'cluster-specific-acm-policies/certs/openshift-ingress-certificate'
   #    - name: dev-openshift-proxy-certificate
   #      gitPath: 'cluster-specific-acm-policies/certs/openshift-proxy-certificate'
-      - name: dev-migrate-cluster-resources
-        gitPath: 'cluster-specific-acm-policies/migrate-cluster-resources'
+      - name: dev-migrate-cluster-resource
+        gitPath: 'cluster-specific-acm-policies/migrate-cluster-resource'
       - name: dev-acm-policy-set
         gitPath: 'cluster-specific-acm-policies/cluster-specific-policy-set'
 
