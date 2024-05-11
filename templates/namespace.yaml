@@ -1,0 +1,12 @@
+{{ range $appProject := .Values.appProjects }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/description: "{{ $appProject.description }}"
+    openshift.io/display-name: "{{ $appProject.displayName }}"
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops
+  name: {{ $appProject.name }}
+{{ end }}

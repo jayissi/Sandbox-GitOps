@@ -1,0 +1,14 @@
+{{ range $appProject := .Values.appProjects }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ $appProject.name }}
+  namespace: openshift-gitops
+spec:
+  destinations:
+    - name: in-cluster
+      namespace: {{ $appProject.name }}
+  sourceRepos:
+    - {{ squote $appProject.gitUrl }}
+{{ end }}

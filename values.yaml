@@ -6,10 +6,13 @@
 #appProject.DisplayName := Namespace DisplayName
 #appProject.gitUrl := Git URL for application helm charts (should end in ".git")
 #appProject.gitBranch := Git Branch for respective application group (Defaults to "main")
-#appProject.valuesFile := Values file for helm charts (Defaults to values.yaml)
+#appProject.valuesFile := Values file for helm charts within a GitOps Project (Defaults to values.yaml). This value is second priority, if $appProject.applications.valuesFile is undefined
+#appProject.gitUsername := Username login for Target repository
+#appProject.gitPassword := Password/PAT for Target repository
 #appProject.applications := List of applications to deploy into the project
 #appProject.applications.name := UNIQUE Name for argo application
 #appProject.applications.gitPath := Path inside the project gitUrl to the Helm chart
+#appProject.applications.valuesFile := Application values file for a single helm chart (Overwrites $appProject.valuesFile). This value is highest priority.
 
 
 appProjects:
@@ -19,9 +22,12 @@ appProjects:
     gitUrl: 'https://github.com/jayissi/Sandbox-ACM-Policy.git'
     gitBranch: main
     valuesFile: values.yaml
+    gitUsername: $USERNAME
+    gitPassword: $PAT
     applications:
       - name: etcd-encryption
         gitPath: 'non-cluster-specific-acm-policies/etcd-encryption'
+        valuesFile: null
       - name: machineconfigpool
         gitPath: 'non-cluster-specific-acm-policies/machineconfigpool'
       - name: tls-v1.2-security-profile
