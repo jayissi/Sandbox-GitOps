@@ -20,11 +20,13 @@ spec:
     repoURL: {{ squote $appProject.gitUrl }}
     path: {{ squote $application.gitPath }}
     targetRevision: {{ $appProject.gitBranch | default "main" }}
+  {{- if $application.autoUpdate }}
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - PruneLast=true
+  {{ end }}
 {{ end }}
 {{ end }}

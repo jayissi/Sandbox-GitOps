@@ -13,6 +13,7 @@
 #appProject.applications.name := UNIQUE Name for argo application
 #appProject.applications.gitPath := Path inside the project gitUrl to the Helm chart
 #appProject.applications.valuesFile := Application values file for a single helm chart (Overwrites $appProject.valuesFile). This value is highest priority.
+#appProject.applications.autoUpdate := Determine if an Argo Application should be auto updated. (Default: false) 
 
 
 appProjects:
@@ -28,6 +29,7 @@ appProjects:
       - name: etcd-encryption
         gitPath: 'non-cluster-specific-acm-policies/etcd-encryption'
         valuesFile: null
+        autoUpdate: true
       - name: machineconfigpool
         gitPath: 'non-cluster-specific-acm-policies/machineconfigpool'
       - name: tls-v1.2-security-profile
