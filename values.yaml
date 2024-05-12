@@ -1,7 +1,8 @@
 ---
-#Refrences
+#References
 
 #appProject.name := Name of Argo APP project, namespace
+#appProject.targetNamespace := Namespace of Argo APP project, namespace (Defaults to $appProject.name)
 #appProject.description := Namespace description
 #appProject.DisplayName := Namespace DisplayName
 #appProject.gitUrl := Git URL for application helm charts (should end in ".git")
@@ -13,11 +14,12 @@
 #appProject.applications.name := UNIQUE Name for argo application
 #appProject.applications.gitPath := Path inside the project gitUrl to the Helm chart
 #appProject.applications.valuesFile := Application values file for a single helm chart (Overwrites $appProject.valuesFile). This value is highest priority.
-#appProject.applications.autoUpdate := Determine if an Argo Application should be auto updated. (Default: false) 
+#appProject.applications.autoUpdate := Determine if an Argo Application should be auto updated. (Default: false) type=bool
 
 
 appProjects:
   - name: acm-policy
+    targetNamespace: null
     description: "ACM policies for each OpenShift cluster"
     displayName: "Baseline ACM Policies"
     gitUrl: 'https://github.com/jayissi/Sandbox-ACM-Policy.git'

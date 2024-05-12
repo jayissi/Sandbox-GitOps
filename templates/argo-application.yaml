@@ -10,7 +10,7 @@ spec:
   project: {{ $appProject.name }}
   destination:
     name: in-cluster
-    namespace: {{ $appProject.name }}
+    namespace: {{ $appProject.targetNamespace | default $appProject.name }}
   source:
     directory:
       recurse: false

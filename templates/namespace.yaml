@@ -8,5 +8,5 @@ metadata:
     openshift.io/display-name: "{{ $appProject.displayName }}"
   labels:
     argocd.argoproj.io/managed-by: openshift-gitops
-  name: {{ $appProject.name }}
+  name: {{ $appProject.targetNamespace | default $appProject.name }}
 {{ end }}
