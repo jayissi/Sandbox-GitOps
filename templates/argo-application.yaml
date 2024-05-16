@@ -15,6 +15,13 @@ spec:
     directory:
       recurse: false
     helm:
+    {{- if $application.parameters }}
+      parameters:
+      {{- range $param := $application.parameters }}
+        - name: {{ $param.name }}
+          value: {{ $param.value }}
+      {{- end }}
+    {{- end }}
       valueFiles:
         - {{ or $application.valuesFile $appProject.valuesFile | default "values.yaml" | squote }}
     repoURL: {{ squote $appProject.gitUrl }}

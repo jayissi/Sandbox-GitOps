@@ -32,6 +32,9 @@ appProjects:
         gitPath: 'non-cluster-specific-acm-policies/etcd-encryption'
         valuesFile: null
         autoUpdate: true
+        parameters:
+          - name: Hello
+            value: World
       - name: machineconfigpool
         gitPath: 'non-cluster-specific-acm-policies/machineconfigpool'
       - name: tls-v1.2-security-profile
